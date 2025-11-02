@@ -23,18 +23,19 @@
 
       header {
         text-align: center;
-        padding: 4rem 1rem 2rem 1rem;
+        padding: 4rem 1rem 1rem 1rem; /* reduced bottom padding */
       }
 
       h1 {
         font-size: 2.5rem;
         font-weight: 700;
-        margin-bottom: 0.5rem;
+        margin-bottom: 0.25rem; /* tightened spacing */
       }
 
       h2 {
         font-size: 1.5rem;
         font-weight: 500;
+        margin-top: 0; /* no extra gap */
       }
 
       main {
@@ -49,8 +50,16 @@
         margin-bottom: 1rem;
       }
 
-      nav {
+      .small-note {
+        font-size: 0.85rem;
+        color: #340048aa;
         margin-top: 2rem;
+        margin-bottom: 0.5rem;
+        font-style: italic;
+      }
+
+      nav {
+        margin-top: 0.5rem;
       }
 
       nav a {
@@ -91,16 +100,13 @@
         This portfolio will showcase my work.
       </p>
 
+      <p class="small-note">[To Be Added]</p>
+
       <nav>
         <a href="#">Artifacts</a>
         <a href="#">Enhancements</a>
         <a href="#">Professional Reflection</a>
       </nav>
-
-      <section>
-        <h2 style="margin-top: 3rem;">Module One</h2>
-        <p>Enhancement Planning and Artifact Selection.</p>
-      </section>
     </main>
 
     <footer>
