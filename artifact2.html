@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Artifact Two - Java Algorithms & Data Structures | Sonya DaRosa</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+    <!-- Top Sticky Navigation -->
+    <nav class="top-navigation">
+        <div class="top-nav-container">
+            <div class="top-nav-brand">
+                <a href="index.html" style="color: inherit; text-decoration: none;">Sonya DaRosa</a>
+            </div>
+            <div class="top-nav-links">
+                <a href="index.html" class="top-nav-link">Home</a>
+                <a href="artifact1.html" class="top-nav-link">Artifact One</a>
+                <a href="artifact2.html" class="top-nav-link active">Artifact Two</a>
+                <a href="artifact3.html" class="top-nav-link">Artifact Three</a>
+            </div>
+        </div>
+    </nav>
+
+    <header>
+        <h1>Artifact Two: Algorithms and Data Structures</h1>
+        <h2>Java Scheduling Services</h2>
+    </header>
+
+    <main>
+        <div class="artifact-meta">
+            <div class="meta-item">
+                <div class="meta-label">Enhancement Category</div>
+                <div class="meta-value">Algorithms and Data Structures</div>
+            </div>
+            <div class="meta-item">
+                <div class="meta-label">Programming Language</div>
+                <div class="meta-value">Java</div>
+            </div>
+            <div class="meta-item">
+                <div class="meta-label">Enhancement Focus</div>
+                <div class="meta-value">Conflict Detection & Performance</div>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <h3>Project Overview</h3>
+            <p>
+                This artifact is based on my CS 320 Contact, Task, and Appointment Services project, with a specific
+                focus on the Appointment domain.
+                The original project was designed to manage appointments in memory while enforcing business rules such
+                as valid IDs, future dates, and description length constraints. Appointments could be added, retrieved,
+                and deleted using a service layer backed by Java collections.
+            </p>
+
+            <p>
+                For this artifact, I focused on enhancing the algorithmic complexity and data structure design of the
+                AppointmentService to better reflect real-world scheduling systems and demonstrate intentional data
+                structure selection.
+            </p>
+        </div>
+
+        <div class="content-section">
+            <h3>Code Analysis & Areas for Improvement</h3>
+            <div class="enhancement-box">
+                <h4>Key Issues Identified:</h4>
+                <ul>
+                    <li><strong>Limited Scheduling Logic:</strong> Appointments were only unique by ID. The service
+                        allowed multiple appointments to be scheduled on the same date without restriction.</li>
+                    <li><strong>Underutilized Data Structures:</strong> While a HashMap was used effectively for ID
+                        lookups, there was no structure supporting date-based queries or conflict detection.</li>
+                    <li><strong>Business Rule Gaps:</strong> The service did not reflect real-world scheduling
+                        constraints such as preventing double-booking.</li>
+                    <li><strong>Testing Coverage Gaps:</strong> Existing tests validated ID conflicts but did not verify
+                        date conflicts or scheduling integrity.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <h3>Repository & Code</h3>
+            <p>
+                The enhanced Java scheduling system demonstrates significant improvements in algorithmic efficiency and
+                data structure design while maintaining backward compatibility and adding robust new features.
+            </p>
+
+            <div class="enhancement-box">
+                <h4>Code Repositories</h4>
+                <div class="repository-grid">
+                    <div class="repository-section-box">
+                        <div class="repository-label">Original Implementation</div>
+                        <a href="https://github.com/SonyaRose/Artifact-Two-Original" class="repo-link" target="_blank"
+                            rel="noopener">View Original Code →</a>
+                        <div class="repository-description">Basic scheduling with HashMap storage</div>
+                    </div>
+                    <div class="repository-section-box">
+                        <div class="repository-label">Enhanced Version</div>
+                        <a href="https://github.com/SonyaRose/Artifact-Two-Enhancement" class="repo-link"
+                            target="_blank" rel="noopener">View Enhanced Code →</a>
+                        <div class="repository-description">Optimized with dual data structures</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <h3>Enhancements Implemented</h3>
+
+            <div class="enhancements-implemented">
+                <h4>1. Dual Data Structure Design</h4>
+                <p>
+                    The AppointmentService was enhanced to use two coordinated data structures:
+                </p>
+                <ul>
+                    <li><span class="algorithm-highlight">Map&lt;String, Appointment&gt;</span> for fast ID-based
+                        lookup</li>
+                    <li><span class="algorithm-highlight">Map&lt;Date, List&lt;Appointment&gt;&gt;</span> for
+                        date-based grouping and conflict detection</li>
+                </ul>
+                <p>This design allows the service to efficiently answer two different questions: "Do I already have
+                    this appointment ID?" and "Is this date already booked?"</p>
+
+                <h4>2. Date Conflict Detection Algorithm</h4>
+                <p>
+                    The addAppointment() method was enhanced with a two-step validation process:
+                </p>
+                <ul>
+                    <li>Check for duplicate appointment IDs</li>
+                    <li>Check whether the appointment date already exists in the date-based map</li>
+                </ul>
+                <p>If a conflict is detected, the service throws a clear exception preventing double-booking.</p>
+
+                <h4>3. Data Integrity & Cleanup Logic</h4>
+                <p>
+                    The deleteAppointment() method was enhanced to:
+                </p>
+                <ul>
+                    <li>Remove appointments from both data structures</li>
+                    <li>Automatically clean up empty date entries</li>
+                    <li>Ensure no orphaned data remains in memory</li>
+                </ul>
+                <p>This maintains consistency and prevents unnecessary memory usage.</p>
+
+                <h4>4. New Utility Methods</h4>
+                <p>
+                    Additional methods were added to support scheduling logic:
+                </p>
+                <ul>
+                    <li><span class="algorithm-highlight">isDateAvailable(Date date)</span> — checks if a date is
+                        already booked</li>
+                    <li><span class="algorithm-highlight">getAppointmentsByDate(Date date)</span> — retrieves all
+                        appointments scheduled on a given date</li>
+                </ul>
+                <p>These methods enable future extensions such as calendar views or availability checks.</p>
+
+                <h4>5. Expanded JUnit Test Coverage</h4>
+                <p>
+                    New tests were added to validate:
+                </p>
+                <ul>
+                    <li>Rejection of multiple appointments on the same date</li>
+                    <li>Successful scheduling on different dates</li>
+                    <li>Proper cleanup of date mappings after deletions</li>
+                    <li>Correct behavior of new utility methods</li>
+                    <li>Specific error messages for date conflicts</li>
+                </ul>
+                <p>All existing tests continued to pass unchanged, demonstrating safe refactoring.</p>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <h3>Data Structure Complexity Analysis</h3>
+            <div class="enhancement-box">
+                <h4>Enhanced vs. Original Performance Comparison:</h4>
+
+                <div class="performance-metric">
+                    <strong>Appointment Scheduling:</strong><br>
+                    • Original: O(n) conflict check + O(1) insert = O(n)<br>
+                    • Enhanced: O(1) conflict check + O(1) insert = O(1)
+                </div>
+
+                <div class="performance-metric">
+                    <strong>Daily Schedule Retrieval:</strong><br>
+                    • Original: O(n) full scan with date filtering<br>
+                    • Enhanced: O(1) direct hash table lookup
+                </div>
+
+                <div class="performance-metric">
+                    <strong>Appointment Modification:</strong><br>
+                    • Original: O(n) for conflict validation<br>
+                    • Enhanced: O(1) for date-based validation + O(k) for related updates
+                </div>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <div class="enhancement-box">
+                <h3>Skills Demonstrated</h3>
+                <p>This enhancement showcases several key competencies in algorithms and data structures:</p>
+                <ul>
+                    <li><strong>Data Structure Selection:</strong> Choosing complementary structures to optimize for
+                        multiple access patterns</li>
+                    <li><strong>Algorithmic Optimization:</strong> Improving date conflict detection from linear scans to
+                        constant-time lookups</li>
+                    <li><strong>Refactoring for Scalability:</strong> Enhancing logic without breaking existing behavior
+                    </li>
+                    <li><strong>Defensive Programming:</strong> Enforcing realistic scheduling constraints</li>
+                    <li><strong>Test-Driven Thinking:</strong> Expanding test coverage to match new logic paths</li>
+                </ul>
+
+                <h3>Course Outcomes Addressed</h3>
+                <p>This artifact and its enhancements address the following course outcomes:</p>
+                <ul>
+                    <li>Designed and evaluated a computing solution using algorithmic principles while managing performance
+                        and complexity trade-offs.</li>
+                    <li>Applied appropriate data structures to improve efficiency and real-world usability.</li>
+                    <li>Used well-founded computing techniques to enhance system reliability and maintainability.</li>
+                    <li>Strengthened validation logic to support data integrity and predictable behavior.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <h3>Testing Strategy & Validation Framework</h3>
+            <p>
+                The testing strategy for this artifact focused on validating both correctness and algorithmic behavior
+                as the underlying data structures became more complex.
+            </p>
+
+            <p>
+                At the unit level, existing JUnit tests were used to confirm that all original functionality—creating,
+                retrieving, and deleting appointments—continued to work as expected after enhancements were introduced.
+                This ensured that refactoring did not change external behavior.
+            </p>
+
+            <p>
+                To support the new date-based logic, additional tests were added to verify:
+            </p>
+
+            <ul>
+                <li>Appointments cannot be double-booked on the same date</li>
+                <li>Appointments on different dates are allowed</li>
+                <li>Date-based availability checks return correct results</li>
+                <li>Deletions correctly restore date availability</li>
+            </ul>
+
+            <p>
+                These tests were designed to cover both positive scenarios (valid scheduling) and negative scenarios
+                (conflicts and invalid operations). By targeting edge cases such as duplicate dates and cleanup after
+                deletion, the test suite validates that the algorithmic improvements behave predictably and maintain
+                data integrity.
+            </p>
+
+            <p>
+                Overall, this testing framework confirms that the enhanced data structures improve performance and
+                functionality without introducing regressions or inconsistent behavior.
+            </p>
+        </div>
+
+        <div class="content-section">
+            <div class="narrative-reflection-section">
+                <div class="narrative-reflection-content">
+                    <h3>Narrative Reflection</h3>
+                    <p>
+                        The artifact I selected for the Algorithms and Data Structures category is the Appointment
+                        Management portion of my CS-320 Software Testing project. I originally created this code as part of
+                        a system that handled contacts, tasks, and appointments, with the goal of validating user inputs and
+                        ensuring the services could create, retrieve, and delete objects reliably. The Appointment class
+                        performed strict validation on IDs, dates, and descriptions, while the AppointmentService stored
+                        appointments in memory and allowed basic operations like add, delete, and lookup. The original
+                        design used a single HashMap keyed by appointment ID, which allowed fast lookups, but it didn't
+                        support any scheduling rules beyond preventing duplicate IDs. There was no way to check for or
+                        prevent two appointments from being made on the same date.
+                    </p>
+
+                    <p>
+                        I chose this artifact for my ePortfolio because it offered a strong opportunity to demonstrate
+                        algorithmic thinking and thoughtful data structure selection. Appointments are a perfect example of
+                        a real-world scheduling problem, and the original version of the service did not behave like a
+                        realistic scheduling system. For this milestone, I enhanced the AppointmentService by adding a
+                        second data structure: a HashMap that groups appointments by their date. This allowed me to
+                        implement fast O(1) date-conflict detection and expand the functionality to include calendar-style
+                        queries and availability checking. The <span class="algorithm-highlight">addAppointment</span>
+                        method was improved so it now checks both for duplicate IDs and for double-booked dates before
+                        inserting the appointment into both maps. The <span
+                            class="algorithm-highlight">deleteAppointment</span> method was also expanded so it removes the
+                        appointment from both structures and cleans up empty date entries to prevent ghost keys. On top of
+                        that, I added new utility methods, <span class="algorithm-highlight">getAppointmentsByDate</span>
+                        and <span class="algorithm-highlight">isDateAvailable</span>, to support more meaningful date-based
+                        operations. I also created eight new JUnit tests to validate conflict prevention, dual-map
+                        synchronization, memory cleanup, and the behavior of the new utility methods. These improvements
+                        strengthen both the algorithmic efficiency and overall functionality of the service, demonstrating
+                        my ability to design data structures that reflect real system constraints.
+                    </p>
+
+                    <p>
+                        In Module One, I planned for this enhancement to help me demonstrate Course Outcome 3: designing and
+                        evaluating computing solutions using algorithmic principles. I believe I clearly met this goal,
+                        since the enhancement required analyzing the original implementation, identifying inefficiencies,
+                        and selecting an appropriate structure that improves performance and supports additional business
+                        logic. I also made progress toward Outcome 4 by expanding the complexity of the system using
+                        well-established Java collection frameworks and writing a comprehensive set of unit tests to verify
+                        the new behavior. At this point, I do not need to adjust my outcome-coverage plan as this
+                        enhancement aligns exactly with what I intended to demonstrate for Category Two.
+                    </p>
+
+                    <p>
+                        Reflecting on the enhancement process, I learned a great deal about modifying an existing system
+                        while keeping it backward compatible. One challenge was designing the dual-map structure so that
+                        both maps always stayed in sync. This required thinking through all possible operations of adding,
+                        deleting, querying and making sure that that data's integrity was maintained regardless of how the
+                        service was used. Another challenge was expanding the test suite to fully capture the new behavior.
+                        Writing tests for memory cleanup, conflict detection, and multi-map consistency helped reinforce how
+                        important thorough testing is when updating core system logic. Overall, this enhancement taught me
+                        how to apply algorithmic reasoning to a practical scheduling problem, how to expand a codebase in a
+                        safe and structured way, and how to design data structures that support both performance and
+                        real-world business requirements.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        © 2025 Sonya DaRosa — Southern New Hampshire University
+    </footer>
+</body>
+
+</html>

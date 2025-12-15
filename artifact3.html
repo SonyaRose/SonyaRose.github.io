@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Artifact Three - Java Database Integration | Sonya DaRosa</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+    <!-- Top Sticky Navigation -->
+    <nav class="top-navigation">
+        <div class="top-nav-container">
+            <div class="top-nav-brand">
+                <a href="index.html" style="color: inherit; text-decoration: none;">Sonya DaRosa</a>
+            </div>
+            <div class="top-nav-links">
+                <a href="index.html" class="top-nav-link">Home</a>
+                <a href="artifact1.html" class="top-nav-link">Artifact One</a>
+                <a href="artifact2.html" class="top-nav-link">Artifact Two</a>
+                <a href="artifact3.html" class="top-nav-link active">Artifact Three</a>
+            </div>
+        </div>
+    </nav>
+
+    <header>
+        <h1>Artifact Three: Databases</h1>
+        <h2>Java Services Migrated to MongoDB</h2>
+    </header>
+
+    <main>
+        <div class="artifact-meta">
+            <div class="meta-item">
+                <div class="meta-label">Enhancement Category</div>
+                <div class="meta-value">Databases</div>
+            </div>
+            <div class="meta-item">
+                <div class="meta-label">Technologies</div>
+                <div class="meta-value">Java + MongoDB</div>
+            </div>
+            <div class="meta-item">
+                <div class="meta-label">Enhancement Focus</div>
+                <div class="meta-value">Data Persistence & Scalability</div>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <h3>Project Overview</h3>
+            <p>
+                This artifact builds on my CS 320 Contact, Task, and Appointment Services project, enhancing it to
+                demonstrate database integration and persistent data management. Originally, the project stored all data
+                in memory using Java collections, which allowed the services to demonstrate validation, business logic,
+                and testing effectively. However, once the application stopped running, all data was lost.
+            </p>
+
+            <p>
+                This limitation made the system unsuitable for any real-world application where data persistence,
+                concurrent access, and scalability are essential requirements. The migration to MongoDB addresses these
+                fundamental architectural constraints.
+            </p>
+        </div>
+
+        <div class="content-section">
+            <h3>Code Analysis & Areas for Improvement</h3>
+            <div class="enhancement-box">
+                <h4>Key Issues Identified:</h4>
+                <ul>
+                    <li><strong>No Persistence:</strong> Data existed only during runtime and was lost on restart.</li>
+                    <li><strong>Tightly Coupled Storage:</strong> Business logic and storage implementation were
+                        combined, making it difficult to swap storage mechanisms.</li>
+                    <li><strong>Limited Scalability:</strong> In-memory collections do not scale or survive across
+                        sessions.</li>
+                    <li><strong>Testing Limited to Unit Scope:</strong> Tests validated logic but not real persistence
+                        or database interaction.</li>
+                </ul>
+
+                <p>
+                    Despite these limitations, the project had a strong foundation: clean data models, strict
+                    validation, and comprehensive unit testing.
+                </p>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <h3>Repository & Documentation</h3>
+            <p>
+                The MongoDB-enhanced Java services demonstrate professional-grade database integration with
+                comprehensive documentation covering installation, configuration, and testing procedures for instructor
+                evaluation.
+            </p>
+
+            <div class="enhancement-box">
+                <h4>Code Repositories</h4>
+                <div class="repository-grid">
+                    <div class="repository-section-box">
+                        <div class="repository-label">Original Implementation</div>
+                        <a href="https://github.com/SonyaRose/Artifact-Three-Original" class="repo-link" target="_blank"
+                            rel="noopener">View Original Code →</a>
+                        <div class="repository-description">In-memory Java services</div>
+                    </div>
+                    <div class="repository-section-box">
+                        <div class="repository-label">Enhanced Version</div>
+                        <a href="https://github.com/SonyaRose/Artifact-Three-Enhancement" class="repo-link"
+                            target="_blank" rel="noopener">View Enhanced Code →</a>
+                        <div class="repository-description">Full MongoDB integration</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <h3>Enhancements Implemented</h3>
+
+            <div class="enhancements-implemented">
+                <h4>1. MongoDB Integration</h4>
+                <p>
+                    Each service was refactored to use MongoDB as the storage backend, replacing in-memory
+                    collections with database collections:
+                </p>
+                <ul>
+                    <li>Contacts stored in a <span class="database-highlight">contacts</span> collection</li>
+                    <li>Tasks stored in a <span class="database-highlight">tasks</span> collection</li>
+                    <li>Appointments stored in an <span class="database-highlight">appointments</span> collection
+                    </li>
+                </ul>
+                <p>MongoDB was selected due to its flexible document model and natural alignment with the project's
+                    object structure.</p>
+
+                <h4>2. Centralized Database Configuration</h4>
+                <p>
+                    A new configuration class was introduced to manage:
+                </p>
+                <ul>
+                    <li>MongoDB client connections</li>
+                    <li>Database selection</li>
+                    <li>Collection access</li>
+                    <li>Test cleanup utilities</li>
+                </ul>
+                <p>This centralized approach ensures consistent database access and clean separation between
+                    business logic and infrastructure.</p>
+
+                <h4>3. Object–Document Mapping Layer</h4>
+                <p>
+                    Dedicated mapper classes were added for each entity:
+                </p>
+                <ul>
+                    <li><span class="database-highlight">ContactMapper</span></li>
+                    <li><span class="database-highlight">TaskMapper</span></li>
+                    <li><span class="database-highlight">AppointmentMapper</span></li>
+                </ul>
+                <p>These mappers convert Java objects to MongoDB documents and back, preserving validation rules and
+                    ensuring consistent data representation.</p>
+
+                <h4>4. Backward-Compatible Service Refactoring</h4>
+                <p>
+                    All service method signatures remained unchanged. Internally:
+                </p>
+                <ul>
+                    <li>CRUD operations were translated into MongoDB queries</li>
+                    <li>Validation logic was preserved exactly as implemented in CS 320</li>
+                    <li>Existing unit tests continued to pass without modification</li>
+                </ul>
+                <p>This demonstrated safe refactoring without breaking existing behavior.</p>
+
+                <h4>5. MongoDB Integration Testing</h4>
+                <p>
+                    New integration tests were added to verify:
+                </p>
+                <ul>
+                    <li>Data is actually written to the database</li>
+                    <li>Records persist across service calls</li>
+                    <li>Deletions remove records from MongoDB</li>
+                    <li>Scheduling and validation rules still apply with persistent storage</li>
+                </ul>
+                <p>Before each test, collections are cleared to maintain isolation and repeatability.</p>
+
+                <h4>6. Instructor Verification & Documentation</h4>
+                <p>
+                    Extensive documentation was added to support instructor review:
+                </p>
+                <ul>
+                    <li>MongoDB setup and testing guide</li>
+                    <li>Clear instructions for running tests</li>
+                    <li>Class-level comments explaining what changed and what stayed the same</li>
+                    <li>A project README summarizing architecture, enhancements, and verification steps</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <h3>Data Structure and Storage Design Analysis</h3>
+            <p>
+                This enhancement required deliberate decisions about how data would be stored, accessed, and validated
+                once persistence was introduced.
+            </p>
+
+            <p>
+                MongoDB was selected as the storage backend because the existing domain objects, contacts, tasks, and
+                appointments, already map cleanly to document-based records. Each entity has a natural unique
+                identifier, making it appropriate to use that identifier as the document <span
+                    class="database-highlight">_id</span>, which provides constant-time lookups.
+            </p>
+
+            <div class="enhancement-box">
+                <h4>From a complexity perspective:</h4>
+
+                <p>
+                    <strong>ID-Based Operations:</strong> All create, retrieve, update, and delete operations are
+                    performed using indexed <span class="database-highlight">_id</span> lookups, resulting in O(1)
+                    average-case time complexity.
+                </p>
+
+                <p>
+                    <strong>Date-Based Queries (Appointments):</strong> Appointment scheduling relies on indexed date
+                    fields, allowing efficient conflict detection and availability checks without scanning the entire
+                    dataset.
+                </p>
+
+                <p>
+                    <strong>Space Complexity:</strong> Storage grows linearly with the number of records (O(n)), which
+                    is expected for persistent data systems. MongoDB's indexing ensures this growth does not
+                    significantly degrade lookup performance.
+                </p>
+
+                <p>
+                    <strong>Trade-Offs Considered:</strong> While a relational database could enforce constraints
+                    through schemas and joins, MongoDB was chosen for its flexibility, simpler object mapping, and
+                    alignment with the project's existing object-oriented structure. Validation is intentionally handled
+                    at the application layer to maintain control over business rules and ensure consistent behavior
+                    across storage implementations.
+                </p>
+            </div>
+
+            <p>
+                These design choices demonstrate a balance between performance, maintainability, and realism, reflecting
+                how modern applications often combine application-level validation with database-backed persistence.
+            </p>
+        </div>
+
+        <div class="content-section">
+            <div class="enhancement-box">
+                <h3>Skills Demonstrated</h3>
+                <p>This enhancement showcases several key competencies in database and software engineering:</p>
+                <ul>
+                    <li><strong>Database Integration:</strong> Connecting a Java application to MongoDB using official
+                        drivers</li>
+                    <li><strong>Persistence Design:</strong> Migrating from transient storage to durable data storage</li>
+                    <li><strong>Data Modeling:</strong> Designing document structures aligned with domain objects</li>
+                    <li><strong>Backward-Compatible Refactoring:</strong> Enhancing internals without breaking public APIs
+                    </li>
+                    <li><strong>Integration Testing:</strong> Verifying correctness across application and database
+                        boundaries</li>
+                    <li><strong>Secure Data Handling:</strong> Preserving validation rules before database insertion</li>
+                </ul>
+
+                <h3>Course Outcomes Addressed</h3>
+                <p>This artifact enhancement directly supports the following capstone course outcomes:</p>
+                <ul>
+                    <li>Designed and evaluated computing solutions while managing trade-offs between simplicity and
+                        persistence.</li>
+                    <li>Applied industry-standard tools to implement durable, scalable data storage.</li>
+                    <li>Used well-founded techniques to integrate databases into existing systems.</li>
+                    <li>Strengthened system reliability through persistent storage and integration testing.</li>
+                    <li>Maintained data integrity and validation to support secure and predictable behavior.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <h3>Testing Strategy & Validation Framework</h3>
+            <p>
+                The testing strategy for this artifact expanded beyond unit testing to include database integration
+                testing, ensuring that persistence behaved correctly in a real storage environment.
+            </p>
+
+            <p>
+                Existing unit tests were preserved to confirm that business logic and validation rules remained
+                unchanged after migrating to MongoDB. This verified backward compatibility and ensured that refactoring
+                did not break existing functionality.
+            </p>
+
+            <p>
+                In addition, new integration tests were introduced to validate database-specific behavior, including:
+            </p>
+
+            <ul>
+                <li>Data persistence across service calls</li>
+                <li>Correct insertion, retrieval, update, and deletion of records</li>
+                <li>Enforcement of validation and uniqueness constraints at the database level</li>
+                <li>Proper cleanup of data between tests to ensure isolation</li>
+            </ul>
+
+            <p>
+                Each integration test begins by clearing the relevant MongoDB collection, allowing tests to run
+                independently and produce consistent results. This approach mimics the behavior of in-memory testing
+                while validating real persistence.
+            </p>
+
+            <p>
+                By combining unit tests with integration tests, this framework ensures both logical correctness and data
+                reliability, demonstrating a testing approach suitable for production-ready applications.
+            </p>
+        </div>
+
+        <div class="content-section">
+            <div class="narrative-reflection-section">
+                <div class="narrative-reflection-content">
+                    <h3>Narrative Reflection</h3>
+                    <p>
+                        For my databases artifact, I chose my CS-320 Contact, Task, and Appointment Services project again
+                        and enhanced it by moving the whole thing from in-memory storage to a real MongoDB backend. The
+                        original version used Java collections of mostly HashMap and ArrayList, to store objects only while
+                        the application was running. Once the program stopped, all the data disappeared. In this
+                        enhancement, I introduced a full persistence layer: I added a MongoDB configuration helper, created
+                        mappers for each entity (Contact, Task, and Appointment), and updated all three service classes so
+                        they now read and write to MongoDB collections instead of local data structures. I also expanded the
+                        test suite with Mongo-aware integration tests and added documentation that explains how to run
+                        everything.
+                    </p>
+
+                    <p>
+                        I included this artifact in my ePortfolio because it shows a real step up from "classroom demo" code
+                        to something that looks like a small production system. The original project already had solid
+                        validation and unit tests, but it was limited to in-memory logic. The enhanced version now
+                        demonstrates full CRUD operations against a real database while preserving all the original
+                        behavior. For example, <span class="database-highlight">ContactService</span>, <span
+                            class="database-highlight">TaskService</span>, and <span
+                            class="database-highlight">AppointmentService</span> still expose the same public methods and
+                        still enforce the same field rules, but they now use <span
+                            class="database-highlight">MongoCollection&lt;Document&gt;</span> objects instead of maps and
+                        lists. I also added dedicated mapper classes so each domain object cleanly converts to and from
+                        MongoDB documents, and I introduced three new integration test classes that prove the data really is
+                        persisted, retrieved, and deleted correctly. Overall, the artifact was improved by adding
+                        persistence, strengthening test coverage, and better separating concerns between the domain layer,
+                        the data layer, and the database configuration.
+                    </p>
+
+                    <p>
+                        So far in this course, I've successfully demonstrated progress toward several of the program
+                        outcomes. Through the work in Categories One and Two, I showed strong alignment with Outcome 3,
+                        since I redesigned existing code to apply better algorithmic choices, and with Outcome 4, through
+                        the use of modern tools and techniques such as exceptions, refactoring, HashMaps, and MongoDB. My
+                        enhancements have also supported Outcome 5, because I strengthened data validation, removed silent
+                        failures, and improved overall reliability in ways that reflect a security-focused mindset. In
+                        addition to these technical outcomes, I've also made meaningful progress on Outcome 1 and Outcome 2.
+                        Writing clear narratives, communicating my enhancement plans, documenting complex code changes, and
+                        creating testing guides all demonstrate professional written communication and the ability to
+                        support collaborative decision-making. Remaining outcomes will be fully demonstrated as I complete
+                        the final database enhancement and publish the finished ePortfolio.
+                    </p>
+
+                    <p>
+                        The process of enhancing and modifying this artifact taught me a lot about working with an existing
+                        codebase and carefully refactoring it without breaking anything. One of the biggest challenges was
+                        maintaining backward compatibility: I wanted all 59 original tests to keep passing while layering in
+                        MongoDB. That meant keeping method signatures the same, preserving all validation logic, and being
+                        very intentional about where I introduced database calls. I also had to think about test isolation
+                        and reliability; adding MongoDB integration tests meant I needed utility methods to clear
+                        collections before each test so they behaved like the original in-memory implementation. Along the
+                        way, I gained more confidence working with the MongoDB driver, designing document structures, and
+                        writing integration tests that prove the system works end-to-end. Overall, this enhancement felt
+                        like taking a familiar school project and pushing it into a more realistic, professional space.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        © 2025 Sonya DaRosa — Southern New Hampshire University
+    </footer>
+</body>
+
+</html>

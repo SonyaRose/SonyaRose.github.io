@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Artifact One - C++ Software Design | Sonya DaRosa</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+    <!-- Top Sticky Navigation -->
+    <nav class="top-navigation">
+        <div class="top-nav-container">
+            <div class="top-nav-brand">
+                <a href="index.html" style="color: inherit; text-decoration: none;">Sonya DaRosa</a>
+            </div>
+            <div class="top-nav-links">
+                <a href="index.html" class="top-nav-link">Home</a>
+                <a href="artifact1.html" class="top-nav-link active">Artifact One</a>
+                <a href="artifact2.html" class="top-nav-link">Artifact Two</a>
+                <a href="artifact3.html" class="top-nav-link">Artifact Three</a>
+            </div>
+        </div>
+    </nav>
+
+    <header>
+        <h1>Artifact One: Software Design & Engineering</h1>
+        <h2>C++ Numeric Overflow/Underflow Project</h2>
+    </header>
+
+    <main>
+        <div class="artifact-meta">
+            <div class="meta-item">
+                <div class="meta-label">Enhancement Category</div>
+                <div class="meta-value">Software Design & Engineering</div>
+            </div>
+            <div class="meta-item">
+                <div class="meta-label">Programming Language</div>
+                <div class="meta-value">C++</div>
+            </div>
+            <div class="meta-item">
+                <div class="meta-label">Enhancement Focus</div>
+                <div class="meta-value">Exception Handling & Modularity</div>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <h3>Project Overview</h3>
+            <p>
+                This artifact is a C++ program originally developed as part of a Secure Coding course. The purpose of
+                the program is to safely test numeric overflow and underflow across a wide range of C++ data types,
+                including signed integers, unsigned integers, and floating-point types.
+            </p>
+
+            <p>
+                The original version of the program used template functions to repeatedly add or subtract values near
+                the numeric limits of each data type. Before performing each operation, the code checked whether the
+                next calculation would exceed the maximum or minimum value for that type. When a potential overflow or
+                underflow was detected, the program printed a warning message to the console and stopped further
+                processing for that test case.
+            </p>
+
+            <p>
+                This artifact demonstrates foundational secure coding concepts by proactively detecting unsafe numeric
+                operations rather than allowing undefined or dangerous behavior to occur.
+            </p>
+        </div>
+
+        <div class="content-section">
+            <h3>Code Analysis & Areas for Improvement</h3>
+            <div class="enhancement-box">
+                <h4>Key Issues Identified:</h4>
+                <ul>
+                    <li><strong>Tight Coupling:</strong> Overflow detection logic was directly coupled to console output
+                        through print statements</li>
+                    <li><strong>Error Handling:</strong> Functions simply printed messages and returned values instead
+                        of properly signaling errors</li>
+                    <li><strong>Separation of Concerns:</strong> Arithmetic logic and user output were tightly coupled
+                        and core functions both detected errors and printed messages</li>
+                    <li><strong>Testing Feedback:</strong> Test results required manual review of console output and
+                        there was no automated indication of success or failures</li>
+                    <li><strong>Code Structure:</strong> Calculation logic mixed with UI presentation concerns</li>
+                    <li><strong>Modern C++ Practices:</strong> Runtime type checks were used where compile-time checks
+                        could improve clarity and efficiency</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <h3>Repository & Code</h3>
+            <p>
+                The enhanced C++ project demonstrates significant improvements in software design, security, and
+                maintainability while preserving all original functionality.
+            </p>
+
+            <div class="enhancement-box">
+                <h4>Code Repositories</h4>
+                <div class="repository-grid">
+                    <div class="repository-section-box">
+                        <div class="repository-label">Original Implementation</div>
+                        <a href="https://github.com/SonyaRose/Artifact-One-Original" class="repo-link" target="_blank"
+                            rel="noopener">View Original Code →</a>
+                        <div class="repository-description">Baseline C++ overflow detection</div>
+                    </div>
+                    <div class="repository-section-box">
+                        <div class="repository-label">Enhanced Version</div>
+                        <a href="https://github.com/SonyaRose/Artifact-One-Enhancement" class="repo-link"
+                            target="_blank" rel="noopener">View Enhanced Code →</a>
+                        <div class="repository-description">Modern C++ with exception handling</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <h3>Enhancements Implemented</h3>
+            
+            <h4>1. Structured Error Handling with Custom Exceptions</h4>
+            <p>
+              A custom <span class="code-highlight">NumericOverflowException</span> was introduced to replace
+              console-only error reporting.
+            </p>
+            <ul>
+              <li>Overflow and underflow conditions now throw exceptions</li>
+              <li>Errors can no longer be silently ignored</li>
+              <li>Calling code can explicitly handle failure scenarios</li>
+            </ul>
+            <p>This change improves reliability, security, and professional coding practices.</p>
+
+            <h4>2. Separation of Logic and Output</h4>
+            <p>
+              Arithmetic functions were refactored to focus solely on computation and validation.
+            </p>
+            <ul>
+              <li>Core logic detects unsafe conditions and throws exceptions</li>
+              <li>Test functions are responsible for output and reporting</li>
+              <li>Improves modularity and reusability</li>
+            </ul>
+
+            <h4>3. Automated Test Result Tracking</h4>
+            <p>
+              Success and failure counters were added to the test runners.
+            </p>
+            <ul>
+              <li>Each test case records whether it passed or failed</li>
+              <li>Final summaries display clear test results</li>
+              <li>Reduces reliance on manual output inspection</li>
+            </ul>
+
+            <h4>4. Modern C++ Compile-Time Type Checking</h4>
+            <p>
+              Replaced runtime checks with <span class="code-highlight">if constexpr</span> and <span
+                class="code-highlight">std::is_integral_v&lt;T&gt;</span>.
+            </p>
+            <ul>
+              <li>Type-specific logic resolved at compile time</li>
+              <li>Cleaner, safer, and more efficient code</li>
+              <li>Demonstrates modern C++ design principles</li>
+            </ul>
+        </div>
+
+        <div class="content-section">
+            <div class="enhancement-box">
+                <h3>Skills Demonstrated</h3>
+                <p>This enhancement showcases several key competencies in software design and engineering:</p>
+                <ul>
+                    <li><strong>Exception Safety:</strong> Implemented structured C++ exception handling to signal numeric
+                        overflow and underflow conditions explicitly rather than relying on console output.</li>
+                    <li><strong>Defensive Programming:</strong> Proactively detected unsafe arithmetic operations before
+                        they occurred, preventing undefined or dangerous behavior.</li>
+                    <li><strong>Template Programming:</strong> Applied advanced use of C++ templates to create reusable
+                        logic that works consistently across multiple numeric data types.</li>
+                    <li><strong>Type Safety:</strong> Leveraged modern C++ compile-time type checks (if constexpr and type
+                        traits) to ensure safer and more efficient code paths.</li>
+                    <li><strong>Modular Design:</strong> Cleanly separated core arithmetic logic from test execution and
+                        output formatting to improve maintainability and reuse.</li>
+                    <li><strong>Testing and Validation:</strong> Enhanced test feedback with automated success and failure
+                        tracking, reducing reliance on manual output inspection.</li>
+                    <li><strong>Code Readability and Maintainability:</strong> Improved clarity through focused
+                        responsibilities, consistent structure, and clear error signaling.</li>
+                </ul>
+
+                <h3>Course Outcomes Addressed</h3>
+                <p>This artifact enhancement directly supports the following capstone course outcomes:</p>
+                <ul>
+                    <li>Design and evaluate computing solutions using algorithmic principles and computer science practices
+                    </li>
+                    <li>Demonstrate innovative techniques and tools for implementing computer solutions</li>
+                    <li>Develop a security mindset that anticipates exploits and mitigates design flaws</li>
+                    <li>Communicate technical design decisions clearly through structured code</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <div class="narrative-reflection-section">
+                <div class="narrative-reflection-content">
+                    <h3>Narrative Reflection</h3>
+                    <p>
+                        The artifact I selected for this milestone is a program that I originally created during my Secure
+                        Coding course. The purpose of the original assignment was to explore how different C++ data types
+                        behave when pushed to their numeric limits. The program uses templates to test multiple primitive
+                        types and observes whether overflow or underflow occurs during repeated addition or subtraction. I
+                        chose this artifact because it represents foundational C++ concepts with templates, type traits,
+                        numeric limits, and highlights the importance of defensive programming, which is something I knew I
+                        could expand and refine for my ePortfolio.
+                    </p>
+
+                    <p>
+                        I included this artifact because it gave me a strong opportunity to demonstrate software engineering
+                        and secure coding practices. The original version of the program worked, but it handled errors in a
+                        very informal way: it printed messages directly from the core logic and returned early whenever
+                        overflow was detected. To improve the quality of the program, I redesigned how the logic reports
+                        unsafe operations by creating a custom exception type, <span
+                            class="code-highlight">NumericOverflowException</span>. Instead of printing messages inside the
+                        numeric functions, the program now throws structured exceptions that the test harness can catch and
+                        respond to. I also modernized the type-checking logic by replacing runtime if statements with
+                        C++17's <span class="code-highlight">if constexpr</span> pattern, which allows compile-time
+                        branching based on whether a type is integral. Finally, I added automated pass/fail tracking so the
+                        program now produces a clear summary of how many operations succeeded and how many failed. These
+                        enhancements showcase my skills in clean code design, modern C++ practices, exception handling, and
+                        structured testing.
+                    </p>
+
+                    <p>
+                        In Module One, I planned for this artifact to demonstrate primarily Outcome 3 (design and evaluate
+                        computing solutions) and Outcome 5 (develop a security mindset). I believe I fully met those goals.
+                        The new exception-based error handling shows a clear security mindset by ensuring that unsafe
+                        numeric behavior cannot be ignored by callers. The improved structure and separation of
+                        concerns—moving print statements out of the core logic—also demonstrates thoughtful software design
+                        and aligns strongly with Outcome 3. The addition of patterned test summaries also helps me better
+                        meet Outcome 2, because the output is now cleaner and easier for a user or reviewer to understand.
+                        Overall, the enhancements strengthened my alignment with multiple outcomes more than I originally
+                        anticipated.
+                    </p>
+
+                    <p>
+                        Enhancing this artifact taught me a lot about how small architectural decisions can affect the
+                        clarity and safety of a program. I learned how powerful exception handling can be when used
+                        correctly, and how separating "logic" from "reporting" makes code easier to maintain and test. I
+                        also gained experience modernizing older C++ patterns with features like <span
+                            class="code-highlight">if constexpr</span>, which helped me think more critically about
+                        compile-time vs. runtime decisions. One challenge I faced during the enhancement was balancing
+                        accuracy with readability, especially when handling floating-point overflow, which behaves
+                        differently than integral overflow. Another challenge was making sure the enhancements stayed true
+                        to the original purpose of the program, without over-engineering it. In the end, the process made me
+                        more confident in applying secure coding principles and taught me how to improve a program's
+                        testability without changing its core functionality.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        © 2025 Sonya DaRosa — Southern New Hampshire University
+    </footer>
+</body>
+
+</html>
